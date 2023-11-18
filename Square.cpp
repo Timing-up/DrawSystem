@@ -4,70 +4,59 @@
 
 using namespace std;
 
-void Square::DrawSquare()
+void Square::showInfo()
+{
+	cout << "正方形信息：" << endl;
+	cout<<"左上角坐标：("<<UpperLeft.x<<","<<UpperLeft.y<<")"<<endl;
+	cout<<"右下角坐标：("<<LowerRight.x<<","<<LowerRight.y<<")"<<endl;
+	cout<<"边长："<<side<<endl;
+	cout<<"面积："<<side*side<<endl;
+	cout << "---------------------" << endl;
+}
+
+void Square::Draw()
 {
 	//使用Dot对象数据绘图
-	left = UpperLeft.x;
-	top = UpperLeft.y;
-	right = LowerRight.x;
-	bottom = LowerRight.y;
 
-	//使用边界左边画图
-	/*left = this->left;
-	top = this->top;
-	right = this->right;
-	bottom = this->bottom;*/
-
-	 rectangle(left,top,right,bottom);
+	 rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
 
 }
-void Square::SetSquareStyle(int style, int thickness, unsigned long color)
+
+void Square::SetSquareStyle(int style, int thickness)
 {
 	//实际调用Line的设置样式函数
-	line.SetLineStyle(style, thickness,color);
+	line.SetLineStyle(style, thickness);
 	
 	
+}
+void Square::resize(double scaleFactor)
+{
+	/*width *= scaleFactor;
+	height *= scaleFactor;*/
+//	LowerRight.x += (LowerLeft.x - UpperLeft.x)*scaleFactor;
+//	LowerRight.y += (LowerLeft.y - UpperLeft.y)*scaleFactor;
+	
+		double centerX = (UpperLeft.x + LowerRight.x) / 2.0;
+		double centerY = (UpperLeft.y + LowerRight.y) / 2.0;
+
+		// 更新 UpperLeft 和 LowerRight 点的位置
+		UpperLeft.x = centerX - (centerX - UpperLeft.x) * scaleFactor;
+		UpperLeft.y = centerY - (centerY - UpperLeft.y) * scaleFactor;
+		LowerRight.x = centerX + (LowerRight.x - centerX) * scaleFactor;
+		LowerRight.y = centerY + (LowerRight.y - centerY) * scaleFactor;
+	
+
 }
 //构造函数
 Square::Square()
 {
 }
 
-Square::Square(Dot UpperLeft, Dot LowerRight)
+Square::Square(Dot &UpperLeft, Dot &LowerRight):UpperLeft(UpperLeft),LowerRight(LowerRight)
 {
-	this->UpperLeft = UpperLeft;
-	this->LowerRight = LowerRight;
+	this->side =abs(LowerRight.x - UpperLeft.x);
+
 }
-
-Square::Square(int left, int top, int right, int bottom)
-{
-	this->left = left;
-	this->top = top;
-	this->right = right;
-	this->bottom = bottom;
-}
-
-Square::Square(int left, int top, int right, int bottom, COLORREF color)
-{
-}
-
-Square::Square(int left, int top, int right, int bottom, COLORREF color, int width)
-{
-}
-
-Square::Square(int left, int top, int right, int bottom, COLORREF color, int width, int style)
-{
-}
-
-Square::Square(int left, int top, int right, int bottom, COLORREF color, int width, int style, COLORREF fillcolor)
-{
-}
-
-Square::Square(int left, int top, int right, int bottom, COLORREF color, int width, int style, COLORREF fillcolor, int fillstyle)
-{
-}
-
-
 
 
 //析构函数
@@ -97,42 +86,26 @@ void Square::SetLowerRight(Dot LowerRight)
 	this->LowerRight = LowerRight;
 }
 
-void Square::SetLeft(int left)
-{
-	this->left = left;
-}
 
-void Square::SetTop(int top)
-{
-	this->top = top;
-}
 
-void Square::SetRight(int right)
-{
-	this->right = right;
-}
 
-void Square::SetBottom(int bottom)
-{
-	this->bottom = bottom;
-}
 
-void Square::SetColor(COLORREF color)
-{
-}
-
-void Square::SetWidth(int width)
-{
-}
 
 void Square::SetStyle(int style)
 {
 }
 
-void Square::SetFillColor(COLORREF fillcolor)
-{
-}
 
 void Square::SetFillStyle(int fillstyle)
 {
+}
+
+int Square::GetSide()
+{
+	return side;
+}
+
+int Square::GetArea()
+{
+	return side*side;
 }

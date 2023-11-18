@@ -5,6 +5,12 @@ Circle::Circle()
 {
 }
 
+Circle::Circle(Dot& Center, int Radius)
+{
+	this->Center = Center;
+	this->Radius = Radius;
+}
+
 Circle::~Circle()
 {
 }
@@ -26,12 +32,24 @@ Dot Circle::GetCenter()
 
 void Circle::SetRadius(int radius)
 {
-	this->Radius = radius;
+	Radius = radius;
 
 }
 
 int Circle::GetRadius()
 {
 return this->Radius;
-	return 0;
+}
+
+void Circle::showInfo()
+{
+	cout<< "This is a Circle." << endl;
+	cout << "圆心坐标为：(" << Center.GetX() << "," << Center.GetY() << ")" << endl;
+	cout << "半径为：" << Radius << endl << endl;
+	cout << "---------------------" << endl;
+}
+
+void Circle::DrawCircle()
+{
+	circle(Center.GetX(), Center.GetY(), Radius);
 }

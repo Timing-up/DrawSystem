@@ -1,16 +1,37 @@
 #pragma once
-class Rectangle
+#include "Quadrilateral.h"
+#include "Dot.h"
+#include"Line.h"
+using namespace std;
+
+class Rectangle	:public Quadrilateral
 {
 public:
+	
+
+	int getArea()  {
+		return side1 * side2;
+	}
+
+	void showInfo()  {
+		cout << "This is a rectangle." << endl;
+		cout << "Length: " << side1 << endl;
+		cout << "Width: " << side2 << endl;
+
+	}
+	void DrawRectangle();
+
 	Rectangle();
-	Rectangle(int x, int y, int width, int height);
+	Rectangle(Dot&dot1,Dot dot2);
 	~Rectangle();
 
-	int x;
-	int y;
-	int width;
-	int height;
 
-	bool contains(int x, int y);
+private:
+	Dot UpperLeft;
+	Dot LowerRight;
+	Line line;
+
+	
+
 };
 

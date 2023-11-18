@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -127,25 +127,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicWidget.cpp" />
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="DrawSystem.cpp" />
     <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Painter.cpp" />
+    <ClCompile Include="pushButton.cpp" />
+    <ClCompile Include="Quadrilateral.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicWidget.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Painter.h" />
+    <ClInclude Include="pushButton.h" />
+    <ClInclude Include="Quadrilateral.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="TypeDefine.h" />
+    <ClInclude Include="Windows.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

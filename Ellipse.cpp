@@ -45,3 +45,12 @@ double Ellipse::getB()
 {
 	return this->a;
 }
+
+void Ellipse::Draw()
+{
+	ellipse(center.GetX(), center.GetY(), a, b);
+}
+
+void Ellipse::showInfo()
+{
+}

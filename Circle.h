@@ -1,22 +1,29 @@
-#pragma once
+ï»¿#pragma once
 #include "Dot.h"
 #include "Line.h"
+#include "Graph.h"
 
-class Circle
+class Circle:Graph
 {
-public:
-	//ÊôĞÔ
-	Dot Center;
-	int Radius;
-	Line line;
 
-	//³ÉÔ±º¯Êı
+public:
+	//æˆå‘˜å‡½æ•°
 	Circle();
+	Circle(Dot &Center, int Radius);
 	~Circle();
+
 	void Draw();
 	void SetCenter(Dot center);
 	Dot GetCenter();
 	void SetRadius(int radius);
 	int GetRadius();
+
+	void showInfo();
+	void DrawCircle();
+private:
+	//å±æ€§
+	Dot Center;
+	int Radius;
+	Line line;
 };
 

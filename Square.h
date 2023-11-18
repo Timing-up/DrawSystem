@@ -2,10 +2,15 @@
 #include "Dot.h"
 #include "Line.h"
 #include<graphics.h>
+#include"Graph.h"
+#include<iostream>
+using namespace std;
+class Square:public Graph
 
-class Square
 {
-public:
+private:
+
+	//组合关系
 	Dot UpperLeft;
 	Dot LowerRight;
 
@@ -14,30 +19,30 @@ public:
 
 	Line line;
 
-	int left;
-	int top;
-	int right;
-	int bottom;
 
+	int side;
+	int area;
+
+	public:
 //方法
 	//画正方形
-	void DrawSquare();
+	void Draw();
 
 	//设置样式
-	void SetSquareStyle(int style, int thickness, unsigned long color);
+	void SetSquareStyle(int style, int thickness);
+
+	void resize(double scaleFactor);
+
+	void showInfo();
+
 
 
 
 
 	//构造函数
 	Square();
-	Square(Dot UpperLeft, Dot LowerRight);
-	Square(int left, int top, int right, int bottom);
-	Square(int left, int top, int right, int bottom, COLORREF color);
-	Square(int left, int top, int right, int bottom, COLORREF color, int width);
-	Square(int left, int top, int right, int bottom, COLORREF color, int width, int style);
-	Square(int left, int top, int right, int bottom, COLORREF color, int width, int style, COLORREF fillcolor);
-	Square(int left, int top, int right, int bottom, COLORREF color, int width, int style, COLORREF fillcolor, int fillstyle);
+	Square(Dot &UpperLeft, Dot &LowerRight);
+
 	//析构函数
 	~Square();
 
@@ -56,7 +61,8 @@ public:
 	void SetStyle(int style);
 	void SetFillColor(COLORREF fillcolor);
 	void SetFillStyle(int fillstyle);
-
+	int GetSide();
+	int GetArea();
 
 
 

@@ -1,25 +1,35 @@
 #pragma once
 #include "Dot.h"
-class Line
+class Line:public Graph
 {
+	friend class Square;
+
+
 	public:
-		Dot dot1;
-		Dot dot2;
-		void SetLineStyle(int style,int thickness, unsigned long color);
-		void DrawLine(Dot dot1,Dot dot2);
+		//设置样式
+		void SetLineStyle(int style,int thickness);
+		//画线
+		void Draw();
+		void Erase();
+		void Move();
+		void Resize();
 	
-
-		int style;
-		int thickness;
-
-		//RBG
-		int R;
-		int G;
-		int B;
-
 		//构造函数
 		Line();
 		Line(Dot dot1, Dot dot2);
 		~Line();
+		void showInfo();
+
+private:
+	Dot dot1;
+	Dot dot2;
+	int style;
+	int thickness;
+
+	//RBG
+	int R;
+	int G;
+	int B;
+
 };
 

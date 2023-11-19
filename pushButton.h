@@ -2,7 +2,7 @@
 #ifndef __PUSHBUTTON_H_
 #define __PUSHBUTTON_H_
 
-#include"image.h"
+#include"Image.h"
 #include"BasicWidget.h"
 
 class PushButton :public BasicWidget
@@ -17,6 +17,7 @@ public:
 
 	void setHover(COLORREF c);
 	void setHover(std::string imgPath);
+
 	//事件循环
 	void eventLoop(const ExMessage&);
 
@@ -29,12 +30,14 @@ public:
 	~PushButton();
 
 public:
-	std::string text;
+	std::string text;				//按钮文字
 	bool  isshow = false;			//显示状态
 	ExMessage _msg;					//鼠标消息
+
+
 public:	//current
 	Image* cur_img = nullptr;
-	COLORREF cur_color = RGB(232, 232, 236);
+	COLORREF cur_color = RGB(0, 0, 0);
 
 public:	//normal
 	Image* nor_img = nullptr;

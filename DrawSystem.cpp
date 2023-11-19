@@ -9,19 +9,18 @@
 #include "Painter.h"
 #include "Circle.h"
 #include "Rectangle.h"
+#include"Canvas.h"
 
 using namespace std;	
 
 int main()
 {
 
-
-
-
-	
 	Window windows(960,540);
 	windows.setWindowTitle("简易图形绘制系统");
-	windows.run();
+
+	Canvas* canvas=new Canvas();
+	canvas->run();
 	
 	
 

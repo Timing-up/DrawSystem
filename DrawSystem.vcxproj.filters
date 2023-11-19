@@ -63,6 +63,9 @@
     <ClCompile Include="pushButton.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dot.h">
@@ -111,6 +114,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="pushButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,7 +24,7 @@ public://static
 	static void flushDraw();
 	static void endDraw();
 
-	inline static bool hasMsg() { return peekmessage(&s_message); }
+	inline static bool hasMsg() { return peekmessage(&s_message); }//是否有消息,保存消息到s_message
 	inline static const ExMessage& getMsg() { return s_message; }
 private:
 	HWND handle;	//当前窗口句柄

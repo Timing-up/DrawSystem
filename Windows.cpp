@@ -2,22 +2,22 @@
 #include<conio.h>//?
 
 ExMessage Window::s_message;
-	Window::Window(int w, int h, int flag)
-	{
-		handle = initgraph(w, h, flag);
-		setbkmode(TRANSPARENT);
-	}
 
-	Window::~Window()
-	{
-		closegraph();
-	}
-
-
-void Window::run()
+Window::Window(int w, int h, int flag)
 {
-	MenuWindow();
+	handle = initgraph(w, h, flag);
+	setbkmode(TRANSPARENT);
+	
+
 }
+
+Window::~Window()
+{
+	closegraph();
+}
+
+
+
 
 void Window::setWindowTitle(const std::string& title)
 {
@@ -30,17 +30,6 @@ void Window::setWindowColor(COLORREF c)
 	clear();
 }
 
-void Window::MenuWindow()
-{
-	IMAGE Menu;
-	loadimage(&Menu, "./image/1.jpg");
-	putimage(0, 0, &Menu);
-
-	//文字
-	settextcolor(RGB(212, 73, 182));
-	settextstyle(50, 0,"字魂24号-镇魂手书");
-	outtextxy(400, 300,"开始绘图！");
-}
 
 void Window::CanvasWindow()
 {

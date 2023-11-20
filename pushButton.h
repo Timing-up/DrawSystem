@@ -37,7 +37,7 @@ public:
 
 public:	//current
 	Image* cur_img = nullptr;
-	COLORREF cur_color = RGB(0, 0, 0);
+	COLORREF cur_color =RGB(232,232,236);
 
 public:	//normal
 	Image* nor_img = nullptr;
@@ -45,6 +45,6 @@ public:	//normal
 
 public:	//hover
 	Image* h_img = nullptr;
-	COLORREF h_color = RGB(194, 195, 201);
+	COLORREF h_color = RED;
 };
 #endif

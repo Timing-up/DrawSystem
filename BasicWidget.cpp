@@ -65,6 +65,8 @@ const Font& BasicWidget::font()
 
 void BasicWidget::show()
 {
-    settextstyle((LOGFONT*)&m_font);
-    settextcolor(m_font.color());
+    //settextstyle((LOGFONT*)&m_font);
+    //settextcolor(m_font.color());
+    settextcolor(RGB(55, 170, 224));
+    settextstyle(35, 0, "◊÷ªÍ24∫≈-’ÚªÍ ÷ È");
 }

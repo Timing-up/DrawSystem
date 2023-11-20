@@ -19,15 +19,14 @@ void PushButton::show()
 	{
 		//设置Button框样式
 		setlinecolor(MAGENTA);
-		//setfillcolor(cur_color);
+		setfillcolor(cur_color);
 		::roundrect(m_x, m_y, m_x + m_w, m_y + m_h, 10, 10);
 	}
 	//文字设置
 	//居中显示文本
 	int tx = m_x + (m_w - textwidth(text.data())) / 2;
 	int ty = m_y + (m_h - textheight(text.data())) / 2;
-	settextcolor(RGB(255, 255, 255));
-	settextstyle(35, 0, "字魂24号-镇魂手书");
+	
 	outtextxy(tx, ty, text.data());
 }
 
@@ -47,6 +46,7 @@ void PushButton::setBackgroundImage(std::string imgPath)
 void PushButton::setBackgroundColor(Color color)
 {
 	this->nor_color = color;
+
 }
 
 void PushButton::setHover(COLORREF c)
@@ -63,32 +63,34 @@ void PushButton::setHover(std::string imgPath)
 void PushButton::eventLoop(const ExMessage& msg)
 {
 	this->_msg = msg;
-	if (isin())
+	if (!isin())
 	{
-		if (cur_img)
+		cur_color = nor_color;
+		/*if (cur_img)
 		{
 			cur_img = h_img;
-		}
+		}*/
+	}
 		else
 		{
 			cur_color = h_color;
 		}
 	}
-	else
-	{
-		if (cur_img)
-		{
-			cur_img = nor_img;
-		}
-		else
-		{
-			cur_color = nor_color;
-		}
+	//else
+	//{
+	//	if (cur_img)
+	//	{
+	//		cur_img = nor_img;
+	//	}
+	//	else
+	//	{
+	//		cur_color = nor_color;
+	//	}
 
-	}
+	//}
 
 	//this->show();
-}
+//}
 
 bool PushButton::isin()
 {

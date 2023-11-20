@@ -1,16 +1,18 @@
 #pragma once
 #include<easyx.h>
+#include<iostream>
 #include<string>
+#include"pushButton.h"
 
 
-
+using namespace std;
 class Window
 {
 
 public:
 	Window(int w, int h, int flag = 0);
 	~Window();
-	void run();
+	void Run();
 	void setWindowTitle(const std::string& title);
 	void setWindowColor(COLORREF c);
 	void MenuWindow();
@@ -29,5 +31,6 @@ public://static
 private:
 	HWND handle;	//µ±Ç°´°¿Ú¾ä±ú
 	static ExMessage s_message;
+	Image W_bk;
 };
 

@@ -2,7 +2,7 @@
 
 Canvas::Canvas()
 {
-	c_bk = Image("./image/1.jpg", Window::width(), Window::height());
+	//c_bk = Image("./image/1.jpg", Window::width(), Window::height());
 
 }
 
@@ -12,6 +12,7 @@ Canvas::~Canvas()
 
 void Canvas::run()
 {
+	/*
 	//Window::beginDraw(); //执行后，任何绘图操作都将暂时不输出到绘图窗口上，直到执行 FlushBatchDraw 或 EndBatchDraw 才将之前的绘图输出。
 	drawBackground();
 	//新建按钮，“开始绘图！”
@@ -28,9 +29,10 @@ void Canvas::run()
 	exit->show();
 
 	//在正上方显示文字“欢迎使用绘图系统！”
+	char Title[] = "欢迎使用绘图系统！";
 	settextstyle(60, 0, _T("宋体"));
-	settextcolor(WHITE);
-	outtextxy(250, 60, _T("欢迎使用绘图系统！"));
+	settextcolor(RGB(55, 170, 224));
+	outtextxy((Window::width()-textwidth(Title))/2, 30, _T(Title));
 	
 	//flushmessage(-1);	//清空所有消息类型
 	//对开始绘图按钮进行监听，如果有点击事件，则进入绘图界面
@@ -41,25 +43,44 @@ void Canvas::run()
 
 	//Window::s_message;
 	//start->eventLoop(m);
+	while (1) {
+		ExMessage msg;
+		peekmessage(&msg, -1);//获取一条消息，鼠标类型
+		start->eventLoop(msg);
+		exit->eventLoop(msg);
+		if (start->isin()) {
+			start->setBackgroundColor(RGB(255, 255, 255));
+			cout << "IN" << endl;
+			if (start->isClicked()) {
+				cout << "clicked!" << endl;
 
-	ExMessage msg;
-	getmessage(&msg, EX_MOUSE);//获取一条消息，鼠标类型
-	start->eventLoop(msg);
-	if (1) {
-		start->setBackgroundColor(RGB(0, 0, 255));
+				fillcircle(100, 100, 50);
 
-	}
-	
-	if (start->isClicked()) {
+				//打开绘图界面
+				/*Window::clear();
+				Window CanvasWindow(800, 600);
+				CanvasWindow.setWindowTitle("绘图界面");
 
 
-		//打开绘图界面
-		/*Window::clear();
-		Window CanvasWindow(800, 600);
-		CanvasWindow.setWindowTitle("绘图界面");*/
+			}
+		}
+		//else按esc退出循环
+		
+		else if(exit->isin()) {
+			cout<<"IN222"<<endl;
+			exit->setBackgroundColor(RGB(0, 0, 255));
+			
+			if (exit->isClicked()) {
+				cout<<"clicked222!"<<endl;
+				break;
+			}
+		}
 		
 
+		
+		
 	}
+	*/
 
 	/*while (true)
 	{

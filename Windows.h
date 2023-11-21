@@ -26,11 +26,11 @@ public://static
 	static void flushDraw();
 	static void endDraw();
 
-	inline static bool hasMsg() { return peekmessage(&s_message); }//是否有消息,保存消息到s_message
-	inline static const ExMessage& getMsg() { return s_message; }
+	inline static bool hasMsg() { return peekmessage(&w_msg); }//是否有消息,保存消息到s_message
+	inline static const ExMessage& getMsg() { return w_msg; }
 private:
 	HWND handle;	//当前窗口句柄
-	static ExMessage s_message;
+	static ExMessage w_msg;
 	Image W_bk;
 };
 

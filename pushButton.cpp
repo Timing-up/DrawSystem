@@ -1,4 +1,5 @@
 #include "pushButton.h"
+#include <iostream>
 
 
 PushButton::PushButton(std::string text, int x, int y, int w, int h)
@@ -11,17 +12,12 @@ PushButton::PushButton(std::string text, int x, int y, int w, int h)
 void PushButton::show()
 {
 	BasicWidget::show();
-	if (cur_img)
-	{
-		cur_img->draw();
-	}
-	else
-	{
+	
 		//设置Button框样式
 		setlinecolor(MAGENTA);
-		setfillcolor(cur_color);
-		::roundrect(m_x, m_y, m_x + m_w, m_y + m_h, 10, 10);
-	}
+		setfillcolor(button_color);
+		roundrect(m_x, m_y, m_x + m_w, m_y + m_h, 10, 10);
+	
 	//文字设置
 	//居中显示文本
 	int tx = m_x + (m_w - textwidth(text.data())) / 2;
@@ -35,62 +31,46 @@ void PushButton::setText(std::string text)
 	this->text = text;
 }
 
-void PushButton::setBackgroundImage(std::string imgPath)
-{
-	if (!nor_img)
-		nor_img = new Image(imgPath.data(), this->m_w, this->m_h);
-	this->cur_img = nor_img;
-	this->show();
-}
+
 
 void PushButton::setBackgroundColor(Color color)
 {
-	this->nor_color = color;
+	this->in_color = color;
 
 }
 
 void PushButton::setHover(COLORREF c)
 {
-	h_color = c;
+	 click_clolor= c;
 }
 
-void PushButton::setHover(std::string imgPath)
-{
-	if (!h_img)
-		h_img = new Image(imgPath.c_str(), m_w, m_h);
-}
 
 void PushButton::eventLoop(const ExMessage& msg)
 {
 	this->_msg = msg;
-	if (!isin())
-	{
-		cur_color = nor_color;
-		/*if (cur_img)
-		{
-			cur_img = h_img;
-		}*/
-	}
-		else
-		{
-			cur_color = h_color;
-		}
-	}
-	//else
-	//{
-	//	if (cur_img)
-	//	{
-	//		cur_img = nor_img;
-	//	}
-	//	else
-	//	{
-	//		cur_color = nor_color;
-	//	}
 
-	//}
+	if (isin()) {
+		// 设置样式
+		//setlinestyle(PS_SOLID, 2);
+		setfillcolor(in_color);	// 鼠标放上后按钮的颜色
+		BasicWidget::show();
 
-	//this->show();
-//}
+		// 绘制按钮
+		fillrectangle(m_x, m_y, m_x + m_w, m_y + m_h);
+
+		//文字设置
+
+		//居中显示文本
+		int tx = m_x + (m_w - textwidth(text.data())) / 2;
+		int ty = m_y + (m_h - textheight(text.data())) / 2;
+
+		outtextxy(tx, ty, text.data());
+
+		
+		FlushBatchDraw();
+	
+	}
+}
 
 bool PushButton::isin()
 {

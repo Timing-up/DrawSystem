@@ -1,11 +1,11 @@
 #include "Windows.h"
-#include<conio.h>//?
+#include<conio.h>//键盘消息
 
-ExMessage Window::s_message;
+ExMessage Window::w_msg;
 
 Window::Window(int w, int h, int flag)
 {
-	handle = initgraph(w, h, flag);
+	handle = initgraph(w, h,EX_NOCLOSE);
 	setbkmode(TRANSPARENT);
 	W_bk = Image("./image/1.jpg", Window::width(), Window::height());
 
@@ -40,7 +40,7 @@ void Window::MenuWindow()
 	beginDraw();
 	while (true)
 	{
-		W_bk.draw();
+		W_bk.draw();//绘制背景图片
 		
 		//新建按钮，“开始绘图！”
 		PushButton* start = new PushButton();
@@ -48,6 +48,7 @@ void Window::MenuWindow()
 		start->move(400, 350);
 		start->setText("开始绘图！");
 		start->show();
+
 		//新建按钮，“退出”
 		PushButton* exit = new PushButton();
 		exit->setFixedSize(200, 50);
@@ -61,42 +62,31 @@ void Window::MenuWindow()
 		settextcolor(RGB(55, 170, 224));
 		outtextxy((Window::width() - textwidth(Title)) / 2, 30, _T(Title));
 
-		flushDraw();//刷新绘图
+		
+		//在正下方显示文字“作者：XXX”
+		char Author[] = "作者：越GG";
+		settextstyle(30, 0, _T("宋体"));
+		settextcolor(RGB(55, 170, 224));
+		outtextxy(770, 500, _T(Author));
 
-		//flushmessage(-1);	//清空所有消息类型
-		//对开始绘图按钮进行监听，如果有点击事件，则进入绘图界面
-
-
-		//Window::hasMsg();//判断是否有消息，如果有消息，则保存消息到s_message，返回true，否则返回false
-		//start->_msg = Window::getMsg();
-
-		//Window::s_message;
-		//start->eventLoop(m);
 		
 			ExMessage msg;
 			peekmessage(&msg, -1);//获取一条消息，鼠标类型
 			start->eventLoop(msg);
 			exit->eventLoop(msg);
+			flushDraw();//刷新绘图
 			if (start->isin()) {
-				start->setBackgroundColor(RGB(255, 255, 255));
-				cout << "IN" << endl;
-				start->show();
+				cout << "INStart!" << endl;
+			
 				if (start->isClicked()) {
-					cout << "clicked!" << endl;
-
-					fillcircle(100, 100, 50);
-
-	
-
-
+					cout << "Start!" << endl;
+					CanvasWindow();
 				}
 			}
 	
 
 			else if (exit->isin()) {
-				cout << "IN222" << endl;
-				exit->setBackgroundColor(RGB(0, 0, 255));
-
+				cout<<"INExit!"<<endl;
 				if (exit->isClicked()) {
 					cout << "Exited System!" << endl;
 					break;
@@ -111,8 +101,29 @@ void Window::MenuWindow()
 
 void Window::CanvasWindow()
 {
-	IMAGE Canvas;
 	
+	while (true)
+	{
+		graphdefaults();
+		setbkmode(TRANSPARENT);
+		//loadimage(NULL, _T("./image/3.jpg"), GetSystemMetrics(SM_CXFULLSCREEN), GetSystemMetrics(SM_CYFULLSCREEN), true);//从图片文件获取图像
+		loadimage(NULL, _T("./image/3.jpg"), 960, 540, true);//从图片文件获取图像
+	//	setbkcolor(WHITE);
+		//clear();
+	
+		settextcolor(RGB(255, 0, 0));	//设置文本颜色为红色
+		settextstyle(100, 50, _T("楷体"));
+		outtextxy(270, 0, _T("简单几何图形绘制系统"));
+		flushDraw();
+		char key = _getch();
+		printf("%d,%c\n", key, key);
+
+		if (key == 'q') {
+			break;
+		}
+	}
+	
+
 }
 
 int Window::width()

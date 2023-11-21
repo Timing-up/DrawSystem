@@ -11,12 +11,13 @@
 #include "Rectangle.h"
 #include"Canvas.h"
 
+
 using namespace std;	
 
 int main()
 {
 
-	Window windows(960,540);
+	Window windows(WIDTH,HEIGHT);
 	windows.setWindowTitle("简易图形绘制系统");
 	windows.MenuWindow();
 

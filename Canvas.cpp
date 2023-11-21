@@ -128,7 +128,7 @@ void Canvas::run()
 
 void Canvas::drawBackground()
 {
-	c_bk.draw();
+	//c_bk.draw();
 }
 
 

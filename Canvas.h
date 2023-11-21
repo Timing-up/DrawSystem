@@ -4,8 +4,13 @@
 #include "Circle.h"
 #include "Ellipse.h"
 #include "Square.h"
-#include"Windows.h"
 #include"pushButton.h"
+#include <vector>
+#ifndef	 _CANVAS_H_
+#define  _CANVAS_H_
+
+#define WIDTH 960
+#define HEIGHT 540
 class Canvas
 {
 public:
@@ -24,15 +29,23 @@ public:
 
 	Image c_bk;
 
-private:
-	int opt = 66;
+public:
+
 	ExMessage c_msg;
-	
-	Line line;
+
+	std::vector<PushButton*> graph_btns;//Í¼ÐÎ°´Å¥ÈÝÆ÷
+
+
+
+private:
+	vector<Graph*> graphs;//Í¼ÐÎÈÝÆ÷
+
+
+	/*Line line;
 	class Rectangle rectangle;
 	Circle circle;
 	Square square;
 	class Ellipse ellipse;
-	Quadrilateral quadrilateral;
+	Quadrilateral quadrilateral;*/
 };
-
+#endif

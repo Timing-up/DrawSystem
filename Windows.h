@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 #include"pushButton.h"
+#include"Canvas.h"
 
 
 using namespace std;

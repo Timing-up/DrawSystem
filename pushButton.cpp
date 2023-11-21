@@ -56,8 +56,10 @@ void PushButton::eventLoop(const ExMessage& msg)
 		BasicWidget::show();
 
 		// 绘制按钮
-		fillrectangle(m_x, m_y, m_x + m_w, m_y + m_h);
-
+		//圆角矩形
+		fillroundrect(m_x, m_y, m_x + m_w, m_y + m_h, 10, 10);
+		//fillrectangle(m_x, m_y, m_x + m_w, m_y + m_h);
+		
 		//文字设置
 
 		//居中显示文本

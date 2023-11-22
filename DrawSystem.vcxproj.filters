@@ -39,9 +39,6 @@
     <ClCompile Include="Graph.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Painter.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Quadrilateral.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -54,16 +51,7 @@
     <ClCompile Include="BasicWidget.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="pushButton.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,12 +77,6 @@
     <ClInclude Include="Graph.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Quadrilateral.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Canvas.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -107,16 +89,7 @@
     <ClInclude Include="TypeDefine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="pushButton.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

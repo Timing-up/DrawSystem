@@ -26,6 +26,7 @@ public:
 	//鼠标是否点击了按钮
 	bool isClicked();
 
+	void setmsg(ExMessage msg) { _msg = msg; }
 
 	~PushButton();
 

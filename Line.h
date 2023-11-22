@@ -26,10 +26,7 @@ private:
 	int style;
 	int thickness;
 
-	//RBG
-	int R;
-	int G;
-	int B;
+
 
 };
 

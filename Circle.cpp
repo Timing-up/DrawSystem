@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include <iostream>
+#include "Windows.h"
 using namespace std;
 Circle::Circle()
 {
@@ -11,6 +12,10 @@ Circle::Circle(Dot& Center, int Radius)
 	this->Radius = Radius;
 }
 
+Circle::Circle(int x, int y, int Radius):Center(x,y),Radius(Radius)
+{
+}
+
 Circle::~Circle()
 {
 }
@@ -18,6 +23,9 @@ Circle::~Circle()
 void Circle::Draw()
 {
 std::cout << "Circle::Draw()" << std::endl;
+setfillcolor(RED);
+fillcircle(Center.GetX(), Center.GetY(), Radius);
+Window::flushDraw();//Ë¢ÐÂ»æÍ¼
 }
 
 void Circle::SetCenter(Dot center)

@@ -3,13 +3,14 @@
 #include "Line.h"
 #include "Graph.h"
 
-class Circle:Graph
+class Circle :public Graph
 {
 
 public:
 	//成员函数
 	Circle();
 	Circle(Dot &Center, int Radius);
+	Circle(int x,int y, int Radius);
 	~Circle();
 
 	void Draw();

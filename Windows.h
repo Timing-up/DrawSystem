@@ -29,9 +29,10 @@ public://static
 
 	inline static bool hasMsg() { return peekmessage(&w_msg); }//是否有消息,保存消息到s_message
 	inline static const ExMessage& getMsg() { return w_msg; }
+	static ExMessage w_msg;
 private:
 	HWND handle;	//当前窗口句柄
-	static ExMessage w_msg;
+	
 	Image W_bk;
 };
 

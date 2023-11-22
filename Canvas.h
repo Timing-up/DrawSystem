@@ -16,7 +16,7 @@ class Canvas
 public:
 	Canvas();
 	~Canvas();
-	void run();
+	void run(ExMessage *w_msg);
 	void menu();
 	
 	void drawBackground();
@@ -40,6 +40,7 @@ public:
 private:
 	vector<Graph*> graphs;//Í¼ÐÎÈÝÆ÷
 
+	friend class Window;
 
 	/*Line line;
 	class Rectangle rectangle;

@@ -1,5 +1,6 @@
 #include "pushButton.h"
 #include <iostream>
+#include "Windows.h"
 
 
 PushButton::PushButton(std::string text, int x, int y, int w, int h)
@@ -69,7 +70,7 @@ void PushButton::eventLoop(const ExMessage& msg)
 		outtextxy(tx, ty, text.data());
 
 		
-		FlushBatchDraw();
+		//Window::flushDraw();//刷新绘图,后面有，这里貌似不需要
 	
 	}
 }

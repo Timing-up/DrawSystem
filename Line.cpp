@@ -55,6 +55,12 @@ void Line::showInfo()
 
 Line::Line()
 {
+	dot1.x = 0;
+	dot1.y = 0;
+	dot2.x = 0;
+	dot2.y = 0;
+	style = 0;
+	thickness = 0;
 }
 
 Line::Line(Dot dot1, Dot dot2)

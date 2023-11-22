@@ -1,10 +1,34 @@
 #include "Line.h"
 #include <iostream>
+#include "Windows.h"
 using namespace std;
 
 void Line::Draw()
 {
+	//设置剪辑区域
+	HRGN Line = CreateRectRgn(0, 0, 960, 540);
+	setcliprgn(Line);
+	char s[10];
+	InputBox(s, 10, "请输入线段左顶点横坐标", "线段", "300", 500, 0, false);
+	this->dot1.x = atof(s);
+	InputBox(s, 10, "请输入线段左顶点纵坐标", "线段", "300", 500, 0, false);
+	this->dot1.y = atof(s);
+	InputBox(s, 10, "请输入线段右顶点横坐标", "线段", "800", 500, 0, false);
+	this->dot2.x = atof(s);
+	InputBox(s, 10, "请输入线段右顶点纵坐标", "线段", "500", 500, 0, false);
+	this->dot2.y = atof(s);
+	InputBox(s, 10, "请输入线段样式：0 实线，1虚线", "线段样式", "0", 500, 0, false);
+	this->style	 = atoi(s);
+	InputBox(s, 10, "请输入线段粗细", "线段粗细", "5", 500, 0, false);
+	this->thickness = atoi(s);
+
+
+	SetLineStyle();
 	line(dot1.x, dot1.y, dot2.x, dot2.y);
+
+	Window::flushDraw();
+
+	DeleteObject(Line);
 }
 
 void Line::Erase()
@@ -19,7 +43,7 @@ void Line::Resize()
 {
 }
 
-void Line::SetLineStyle(int style,int thickness)
+void Line::SetLineStyle()
 {	//setlinestyle(线型, 线宽, 颜色);
 /*	PS_SOLID				0 实线
 * 	PS_DASH					1 虚线
@@ -28,14 +52,15 @@ void Line::SetLineStyle(int style,int thickness)
 * 	PS_DASHDOTDOT			4 双点划线
 * 	PS_NULL					5 空线
 */
+	this->style = style;
+	this->thickness = thickness;
 	//设置线条样式
-	//setlinestyle(style, thickness);
+	setlinestyle(style, thickness);
 
 	//设置线条颜色
 	setcolor(RED);
 
-	this->style = style;
-	this->thickness = thickness;
+
 
 }
 void Line::showInfo()
@@ -63,13 +88,57 @@ Line::Line()
 	thickness = 0;
 }
 
-Line::Line(Dot dot1, Dot dot2)
+Line::Line(int x1, int y1, int x2, int y2) :dot1(x1, y1), dot2(x2, y2)
 {
-	this->dot1 = dot1;
-	this->dot2 = dot2;
+	this->style = 0;
+	this->thickness = 1;
 }
+
+
+
 
 Line::~Line()
 {
+}
+
+void Line::setDot1(Dot dot1)
+{
+	this->dot1 = dot1;
+
+}
+
+void Line::setDot2(Dot dot2)
+{
+	this->dot2 = dot2;
+}
+
+Dot Line::getDot1()
+{
+	return this->dot1;
+}
+
+Dot Line::getDot2()
+{
+	return this->dot2;
+}
+
+void Line::setStyle(int style)
+{
+	this->style = style;
+}
+
+void Line::setThickness(int thickness)
+{
+	this->thickness = thickness;
+}
+
+int Line::getStyle()
+{
+	return style;
+}
+
+int Line::getThickness()
+{
+	return thickness;
 }
 

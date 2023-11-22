@@ -1,34 +1,71 @@
 #pragma once
-#include "Quadrilateral.h"
+#include"Graph.h"
 #include "Dot.h"
 #include"Line.h"
+#include <iostream>
 using namespace std;
 
-class Rectangle	:public Quadrilateral
+class Rect :public Graph
 {
 public:
 	
 
-	int getArea()  {
-		return side1 * side2;
-	}
+	
 
 	void showInfo()  {
 		cout << "This is a rectangle." << endl;
-		cout << "Length: " << side1 << endl;
-		cout << "Width: " << side2 << endl;
+		cout << "Width: " << width << endl;
+		cout << "Height: " << height << endl;
 
 	}
-	void DrawRectangle();
+	void Draw();
 
-	Rectangle();
-	Rectangle(Dot&dot1,Dot dot2);
-	~Rectangle();
+	Rect();
+	
+	Rect(int x1, int y1,int widht,int height);
+	~Rect();
+
+	void setUpperLeft(int x, int y) {
+		UpperLeft.x = x;
+		UpperLeft.y = y;
+	}
+	void setLowerRight(int x, int y) {
+		LowerRight.x = x;
+		LowerRight.y = y;
+	}
+	void setWidth(int widght) {
+		width = widght;
+	}
+	void setHeight(int height) {
+		height = height;
+	}
+
+	int getWidth() {
+		return width;
+	}
+	int getHeight() {
+		return height;
+	}
+	int getUpperLeftX() {
+		return UpperLeft.x;
+	}
+	int getUpperLeftY() {
+		return UpperLeft.y;
+	}
+	int getLowerRightX() {
+		return LowerRight.x;
+	}
+	int getLowerRightY() {
+		return LowerRight.y;
+	}
 
 
 private:
 	Dot UpperLeft;
 	Dot LowerRight;
+	int width;
+	int height;
+
 	Line line;
 
 	

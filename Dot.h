@@ -7,9 +7,9 @@ class Dot
 	//ÓÑÔªÀà
 	friend class Line;
 	friend class Square;
-	friend class Rectangle;
+	friend class Rect;
 	friend class Circle;
-	friend class Ellipse;
+	friend class Ellip;
 
 
 	public:

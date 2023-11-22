@@ -1,6 +1,8 @@
 #include "Canvas.h"
 #include "Windows.h"
 #include <conio.h>
+#include"Rectangle.h"
+#include"Ellipse.h"
 
 
 
@@ -114,34 +116,42 @@ void Canvas::run(ExMessage *w_msg)
 		}
 		if (line->isClicked())
 		{
-			//Graph* graph = new Line(100,100,200,200);
-			//graph->Draw();
+			Graph* line = new Line(300,300,50,50);
+			line->Draw();
 			//graphs.push_back(new Line());
 			
 			cout << "Line!" << endl;
+
+			setlinestyle(0, 1);	//防止绘制线段样式影响画布按钮
 		
 		}
 		else if (rectangle->isClicked())
 		{
+			Graph* rect = new Rect(300, 300, 100, 150);
+			rect->Draw();
 			cout << "Rectangle!" << endl;
-	
+			setlinestyle(0, 1);	//防止绘制线段样式影响画布按钮
 		}
 		else if (square->isClicked())
 		{
+			Graph* square = new Square(300, 300, 500);
+			square->Draw();
 			cout << "Square!" << endl;
-	
+			setlinestyle(0, 1);	//防止绘制线段样式影响画布按钮
 		}
 		else if (circle->isClicked())
 		{
-			Graph* graph = new Circle(400,200, 50);
-			graph->Draw();
+			Graph* circle = new Circle(400,200, 50);
+			circle->Draw();
 			cout << "Circle!" << endl;
 	
 		}
 		else if (ellipse->isClicked())
 		{
+			Graph* ellipse = new Ellip(300, 300, 100, 50);
+			ellipse->Draw();
 			cout << "Ellipse!" << endl;
-	
+			//setlinestyle(0, 1);	//防止绘制线段样式影响画布按钮
 		}
 
 		DeleteObject(rgn);

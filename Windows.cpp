@@ -96,6 +96,8 @@ void Window::MenuWindow()
 				DeleteObject(Welcome);
 				canvas->run(&w_msg);//ª≠≤º‘À––-----------------
 
+				
+
 		}
 			
 	

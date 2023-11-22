@@ -28,9 +28,9 @@ void Circle::Draw()
 	setcliprgn(circle);
 	
 	char s[10];
-	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄºá×ø±ê", "Ô²", "0", 500, 0, false);
+	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄºá×ø±ê", "Ô²", "400", 500, 0, false);
 	this->Center.x = atof(s);
-	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄ×Ý×ø±ê", "Ô²", "0", 500, 0, false);
+	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄ×Ý×ø±ê", "Ô²", "250", 500, 0, false);
 	this->Center.y = atof(s);
 	InputBox(s, 10, "ÇëÊäÈëÔ²°ë¾¶", "Ô²", "100", 500, 0, false);
 	this->Radius = atof(s);

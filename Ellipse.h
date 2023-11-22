@@ -1,20 +1,17 @@
 #pragma once
 #include "Dot.h"
-class Ellipse:public Graph
+#include "Line.h"
+class Ellip:public Graph
 {
 
 	public:
 	//³ÉÔ±º¯Êý
-		Ellipse();
-		Ellipse(Dot center, double a, double b);
-		~Ellipse();
+		Ellip();
+		Ellip(Dot UpperLeft,Dot LowerRight);
+		Ellip(int left, int top, int right, int bottom);
+		~Ellip();
 
-		void setCenter(Dot center);
-		void setA(double a);
-		void setB(double b);
-		Dot getCenter();
-		double getA();
-		double getB();
+	
 
 		void Draw();
 		void showInfo();
@@ -26,11 +23,10 @@ class Ellipse:public Graph
 
 
 private:
-	Dot center;
-	double a;
-	double b;
-	double c;
+	Dot UpperLeft;
+	Dot LowerRight;
 	
+	Line line;
 
 };
 

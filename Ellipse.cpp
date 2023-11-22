@@ -1,56 +1,58 @@
 #include "Ellipse.h"
+#include "Windows.h"
 
-Ellipse::Ellipse()
+Ellip::Ellip()
 {
 }
 
-Ellipse::Ellipse(Dot center, double a, double b)
+
+
+Ellip::Ellip(int left, int top, int right, int bottom):UpperLeft(left,top),LowerRight(right,bottom)
 {
-	this->center = center;
-	this->a = a;
-	this->b = b;
 }
 
-Ellipse::~Ellipse()
+Ellip::Ellip(Dot UpperLeft, Dot LowerRight) :UpperLeft(UpperLeft), LowerRight(LowerRight)
+{
+	
+}
+
+
+Ellip::~Ellip()
 {
 
 }
 
-void Ellipse::setCenter(Dot center)
+
+void Ellip::Draw()
 {
-	this->center = center;
+	//设置剪辑区域
+	HRGN ellip = CreateRectRgn(0, 0, 960, 540);
+	setcliprgn(ellip);
+
+	char s[10];
+	InputBox(s, 10, "请输入椭圆外切矩形左上角顶点横坐标", "矩形", "500", 500, 0, false);
+	UpperLeft.x = atof(s);
+	InputBox(s, 10, "请输入椭圆外切矩形左上角顶点纵坐标", "矩形", "200", 500, 0, false);
+	UpperLeft.y = atof(s);
+	InputBox(s, 10, "请输入椭圆外切矩形右下角顶点横坐标", "矩形", "900", 500, 0, false);
+	LowerRight.x = atof(s);
+	InputBox(s, 10, "请输入椭圆外切矩形右下角顶点纵坐标", "矩形", "400", 500, 0, false);
+	LowerRight.y = atof(s);
+	
+	//InputBox(s, 10, "请输入线条宽度", "线条宽度", "5", 500, 0, false);
+	//line.setThickness(atof(s));
+	//line.SetLineStyle();
+
+
+
+	setfillcolor(BLUE);
+	fillellipse(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+
+	Window::flushDraw();
+	DeleteObject(ellip);
+
 }
 
-void Ellipse::setA(double a)
-{
-	this->a = a;
-}
-
-void Ellipse::setB(double b)
-{
-this->b = b;
-}
-
-Dot Ellipse::getCenter()
-{
-	return Dot();
-}
-
-double Ellipse::getA()
-{
-	return this->a;
-}
-
-double Ellipse::getB()
-{
-	return this->a;
-}
-
-void Ellipse::Draw()
-{
-	ellipse(center.GetX(), center.GetY(), a, b);
-}
-
-void Ellipse::showInfo()
+void Ellip::showInfo()
 {
 }

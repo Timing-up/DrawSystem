@@ -1,6 +1,7 @@
 #include "Square.h"
 #include "Rectangle.h"
 #include <iostream>
+#include "Windows.h"
 
 using namespace std;
 
@@ -14,18 +15,44 @@ void Square::showInfo()
 	cout << "---------------------" << endl;
 }
 
-void Square::Draw()
+Square::Square(int x1, int y1, int side) :UpperLeft(x1, y1), LowerRight(x1 + side, y1 + side),side(side)
 {
-	//使用Dot对象数据绘图
 
-	 rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+}
 
+
+void Square::Draw()
+{	//设置剪辑区域
+	HRGN rect = CreateRectRgn(0, 0, 960, 540);
+	setcliprgn(rect);
+
+	char s[10];
+	InputBox(s, 10, "请输入正方形的左上角顶点横坐标", "正方形", "200", 500, 0, false);
+	UpperLeft.x = atof(s); 
+	InputBox(s, 10, "请输入正方形的左上角顶点纵坐标", "正方形", "100", 500, 0, false);
+	UpperLeft.y = atof(s); 
+	InputBox(s, 10, "请输入正方形的边长", "正方形", "200", 500, 0, false);
+	side = atof(s);
+	
+	InputBox(s, 10, "请输入线条宽度", "正方形", "5", 500, 0, false);
+
+	LowerRight.x = UpperLeft.x + side;
+	LowerRight.y = UpperLeft.y + side;
+	line.setThickness(atof(s));
+	line.SetLineStyle();
+	line.setDot1(UpperLeft);
+	line.setDot2(LowerRight);
+	rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+
+	Window::flushDraw();
+	DeleteObject(rect);
+	return;
 }
 
 void Square::SetSquareStyle(int style, int thickness)
 {
 	//实际调用Line的设置样式函数
-	line.SetLineStyle(style, thickness);
+	line.SetLineStyle();
 	
 	
 }

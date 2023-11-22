@@ -18,13 +18,15 @@ private:
 	Dot UpperRight;
 
 	Line line;
+	
+	int side;//边长
 
-
-	int side;
 	int area;
 
 	public:
-//方法
+
+	Square(int x1,int y1,int side);
+
 	//画正方形
 	void Draw();
 

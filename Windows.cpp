@@ -39,9 +39,17 @@ void Window::setWindowColor(COLORREF c)
 void Window::MenuWindow()
 {
 	Canvas* canvas = new Canvas();//新建画布
+
+	
+
 	beginDraw();
 	while (true)
 	{
+		HRGN Welcome = CreateRectRgn(0, 0, WIDTH, HEIGHT);
+		setcliprgn(Welcome);
+
+		clearcliprgn();
+
 		W_bk.draw();//绘制背景图片
 		
 		//新建按钮，“开始绘图！”
@@ -84,7 +92,10 @@ void Window::MenuWindow()
 		}*/
 		if (start->isClicked()) {
 				cout << "Start!" << endl;
+
+				DeleteObject(Welcome);
 				canvas->run(&w_msg);//画布运行-----------------
+
 		}
 			
 	
@@ -102,6 +113,9 @@ void Window::MenuWindow()
 		
 	}
 	endDraw();
+
+	closegraph();
+
 	return ;
 }
 

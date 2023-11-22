@@ -16,15 +16,14 @@ Canvas::~Canvas()
 
 void Canvas::run(ExMessage *w_msg)
 {
-	while (true)
-	{
 
+		Window::clear();
 		graphdefaults();
 		setbkmode(TRANSPARENT);
 		//loadimage(NULL, _T("./image/3.jpg"), GetSystemMetrics(SM_CXFULLSCREEN), GetSystemMetrics(SM_CYFULLSCREEN), true);//从图片文件获取图像
 		//loadimage(NULL, _T("./image/3.jpg"), 960, 540, true);//从图片文件获取图像
 		setbkcolor(WHITE);
-		Window::clear();
+		
 
 		char Title[] = "简易图形绘制系统";
 		settextcolor(RGB(255, 0, 0));	//设置文本颜色为红色
@@ -33,6 +32,16 @@ void Canvas::run(ExMessage *w_msg)
 
 		int ButtonHeight = 50;
 		int UPDISTANCE = (HEIGHT - 9 * ButtonHeight) / 2;
+
+	
+
+	while (true)
+	{
+		//设置剪辑区域
+		HRGN rgn = CreateRectRgn(0, 0, 150, 540);
+		setcliprgn(rgn);
+		clearcliprgn();//-------------------------------------------------!!!!!!!!!
+		//Window::clear();
 		//新建按钮，“线段”
 		PushButton* line = new PushButton();
 		line->setFixedSize(100, ButtonHeight);
@@ -134,7 +143,10 @@ void Canvas::run(ExMessage *w_msg)
 			cout << "Ellipse!" << endl;
 	
 		}
+
+		DeleteObject(rgn);
 	}
+	
 	return;
 }
 

@@ -21,11 +21,26 @@ Circle::~Circle()
 }
 
 void Circle::Draw()
-{
-std::cout << "Circle::Draw()" << std::endl;
-setfillcolor(RED);
-fillcircle(Center.GetX(), Center.GetY(), Radius);
-Window::flushDraw();//Ë¢ÐÂ»æÍ¼
+{	//Ä¿Ç°ÊÇ¾²Ì¬Ô²£¬ÎÞ·¨±à¼­
+
+	//ÉèÖÃ¼ô¼­ÇøÓò
+	HRGN circle = CreateRectRgn(0, 0, 960, 540);
+	setcliprgn(circle);
+	
+	char s[10];
+	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄºá×ø±ê", "Ô²", "0", 500, 0, false);
+	this->Center.x = atof(s);
+	InputBox(s, 10, "ÇëÊäÈëÔ²ÐÄ×Ý×ø±ê", "Ô²", "0", 500, 0, false);
+	this->Center.y = atof(s);
+	InputBox(s, 10, "ÇëÊäÈëÔ²°ë¾¶", "Ô²", "100", 500, 0, false);
+	this->Radius = atof(s);
+
+	std::cout << "Circle::Draw()" << std::endl;
+	setfillcolor(RED);
+	fillcircle(Center.GetX(), Center.GetY(), Radius);
+	Window::flushDraw();//Ë¢ÐÂ»æÍ¼
+	
+	DeleteObject(circle);
 }
 
 void Circle::SetCenter(Dot center)

@@ -39,8 +39,10 @@ void Canvas::run(ExMessage *w_msg)
 
 	while (true)
 	{
+		
 		//设置剪辑区域
 		HRGN rgn = CreateRectRgn(0, 0, 150, 540);
+		//HRGN rgn = CreateRectRgn(0, 0, 960, 540);
 		setcliprgn(rgn);
 		clearcliprgn();//-------------------------------------------------!!!!!!!!!
 		//Window::clear();
@@ -105,6 +107,14 @@ void Canvas::run(ExMessage *w_msg)
 		circle->eventLoop(*w_msg);
 		ellipse->eventLoop(*w_msg);
 
+
+		//遍历输出GraphList中的图形,使用putimage函数输出
+		//初始化it
+		for (int i = 0; i < GraphList.size(); i++) {
+			putimage(150,0, GraphList.back());
+		}
+		
+
 		Window::flushDraw();//刷新绘图
 		c_msg = *w_msg;	//同步消息
 		//peekmessage(&c_msg, EX_MOUSE | EX_KEY);   //获取消息存储到结构体中，但是导致进入页面无法再使用ESC退出，待解决！！！//想法：通过不同窗体的不同消息结构体来判断是哪个窗体的消息？
@@ -128,7 +138,7 @@ void Canvas::run(ExMessage *w_msg)
 		else if (rectangle->isClicked())
 		{
 			Graph* rect = new Rect(300, 300, 100, 150);
-			rect->Draw();
+			GraphList.push_back(rect->Draw());
 			cout << "Rectangle!" << endl;
 			setlinestyle(0, 1);	//防止绘制线段样式影响画布按钮
 		}

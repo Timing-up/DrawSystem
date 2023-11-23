@@ -28,7 +28,7 @@ private:
 	Square(int x1,int y1,int side);
 
 	//画正方形
-	void Draw();
+	Image* Draw();
 
 	//设置样式
 	void SetSquareStyle(int style, int thickness);

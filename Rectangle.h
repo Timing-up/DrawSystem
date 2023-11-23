@@ -1,5 +1,5 @@
 #pragma once
-#include"Graph.h"
+//#include"Graph.h"
 #include "Dot.h"
 #include"Line.h"
 #include <iostream>
@@ -18,7 +18,10 @@ public:
 		cout << "Height: " << height << endl;
 
 	}
-	void Draw();
+	Image* Draw();
+
+
+	
 
 	Rect();
 	

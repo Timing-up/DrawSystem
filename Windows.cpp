@@ -38,6 +38,7 @@ void Window::setWindowColor(COLORREF c)
 
 void Window::MenuWindow()
 {
+	
 	Canvas* canvas = new Canvas();//新建画布
 
 	
@@ -94,6 +95,8 @@ void Window::MenuWindow()
 				cout << "Start!" << endl;
 
 				DeleteObject(Welcome);
+
+				DeleteFile(_T("D:\\test.bmp"));	//删除上一次绘制的图形数据
 				canvas->run(&w_msg);//画布运行-----------------
 
 				

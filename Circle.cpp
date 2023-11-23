@@ -20,13 +20,8 @@ Circle::~Circle()
 {
 }
 
-void Circle::Draw()
-{	//目前是静态圆，无法编辑
-
-	//设置剪辑区域
-	HRGN circle = CreateRectRgn(0, 0, 960, 540);
-	setcliprgn(circle);
-	
+Image* Circle::Draw()
+{
 	char s[10];
 	InputBox(s, 10, "请输入圆心横坐标", "圆", "400", 500, 0, false);
 	this->Center.x = atof(s);
@@ -35,12 +30,70 @@ void Circle::Draw()
 	InputBox(s, 10, "请输入圆半径", "圆", "100", 500, 0, false);
 	this->Radius = atof(s);
 
-	std::cout << "Circle::Draw()" << std::endl;
-	setfillcolor(RED);
-	fillcircle(Center.GetX(), Center.GetY(), Radius);
-	Window::flushDraw();//刷新绘图
-	
-	DeleteObject(circle);
+	//设置剪辑区域
+	HRGN circle = CreateRectRgn(150, 0, 960, 540);
+	setcliprgn(circle);
+
+	while (true)
+	{
+		int flag = 1;
+		while (flag)
+		{
+			clearcliprgn();
+			IMAGE img;
+			loadimage(&img, _T("D:\\test.bmp"));
+			putimage(150, 0, &img);
+			ExMessage msg;
+			peekmessage(&msg);
+			switch (msg.message)
+			{
+			case WM_KEYDOWN:
+				if (msg.vkcode == VK_RETURN) {
+					flag = 0;
+					Image* circleImage = new Image();
+
+
+					setfillcolor(RED);
+					fillcircle(Center.GetX(), Center.GetY(), Radius);
+					Window::flushDraw();
+
+					circleImage->Getimage(150, 0, 810, 540);
+					saveimage(_T("D:\\test.bmp"), circleImage);
+					return circleImage;
+				}//多条语句，请把大括号带上！！！
+
+
+				if (GetAsyncKeyState(VK_UP)) {
+					Center.y -= 1;
+					Center.y -= 1;
+				}
+				if (GetAsyncKeyState(VK_DOWN)) {
+					Center.y += 1;
+					Center.y += 1;
+				}
+				if (GetAsyncKeyState(VK_LEFT)) {
+					Center.x -= 1;
+					Center.x -= 1;
+				}
+				if (GetAsyncKeyState(VK_RIGHT)) {
+					Center.x += 1;
+					Center.x += 1;
+				}
+			}
+
+			//循环绘制
+
+			setfillcolor(RED);
+			fillcircle(Center.GetX(), Center.GetY(), Radius);
+			Window::flushDraw();//刷新绘图
+
+		}
+
+
+
+		//DeleteObject(circle);
+
+	}
 }
 
 void Circle::SetCenter(Dot center)

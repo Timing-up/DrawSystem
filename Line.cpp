@@ -3,11 +3,9 @@
 #include "Windows.h"
 using namespace std;
 
-void Line::Draw()
+Image* Line::Draw()
 {
-	//设置剪辑区域
-	HRGN Line = CreateRectRgn(0, 0, 960, 540);
-	setcliprgn(Line);
+	
 	char s[10];
 	InputBox(s, 10, "请输入线段左顶点横坐标", "线段", "300", 500, 0, false);
 	this->dot1.x = atof(s);
@@ -24,11 +22,77 @@ void Line::Draw()
 
 
 	SetLineStyle();
-	line(dot1.x, dot1.y, dot2.x, dot2.y);
 
-	Window::flushDraw();
+	//设置剪辑区域
+	HRGN Line = CreateRectRgn(150, 0, 960, 540);
+	setcliprgn(Line);
+
+
+	int flag = 1;
+	while (flag)
+	{
+
+
+		clearcliprgn();
+		IMAGE img;
+		loadimage(&img, _T("D:\\test.bmp"));
+		putimage(150, 0, &img);
+		ExMessage msg;
+		peekmessage(&msg);
+		switch (msg.message)
+		{
+		case WM_KEYDOWN:
+			if (msg.vkcode == VK_RETURN) {
+				flag = 0;
+				Image* rectImage = new Image();
+
+				line(dot1.x, dot1.y, dot2.x, dot2.y);
+
+				Window::flushDraw();
+				rectImage->Getimage(150, 0, 810, 540);
+				saveimage(_T("D:\\test.bmp"), rectImage);
+				return rectImage;
+			}//多条语句，请把大括号带上！！！
+
+
+			if (GetAsyncKeyState(VK_UP)) {
+				dot1.y -= 1;
+				dot1.y -= 1;
+				dot2.y -= 1;
+				dot2.y -= 1;
+			}
+			if (GetAsyncKeyState(VK_DOWN)) {
+				dot1.y += 1;
+				dot1.y += 1;
+				dot2.y += 1;
+				dot2.y += 1;
+			}
+			if (GetAsyncKeyState(VK_LEFT)) {
+				dot1.x -= 1;
+				dot1.x -= 1;
+				dot2.x -= 1;
+				dot2.x -= 1;
+			}
+			if (GetAsyncKeyState(VK_RIGHT)) {
+				dot1.x += 1;
+				dot1.x += 1;
+				dot2.x += 1;
+				dot2.x += 1;
+			}
+		}
+
+		//循环绘制
+		line(dot1.x, dot1.y, dot2.x, dot2.y);
+		Window::flushDraw();
+		Window::flushDraw();
+	}
+	
+
+	
 
 	DeleteObject(Line);
+
+	return NULL;
 }
 
 void Line::Erase()

@@ -23,7 +23,7 @@ class Quadrilateral:Graph
 
         virtual ~Quadrilateral() {
 		}
-        virtual void Draw() {
+        virtual Image* Draw() {
 			cout << "This is a quadrilateral." << endl;
 		}
         virtual int getArea() {

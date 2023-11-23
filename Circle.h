@@ -13,7 +13,7 @@ public:
 	Circle(int x,int y, int Radius);
 	~Circle();
 
-	void Draw();
+	Image* Draw();
 	void SetCenter(Dot center);
 	Dot GetCenter();
 	void SetRadius(int radius);

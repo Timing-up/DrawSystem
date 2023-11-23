@@ -16,6 +16,7 @@ using namespace std;
 
 int main()
 {
+	DeleteFile(_T("D:\\test.bmp"));
 
 	Window windows(WIDTH,HEIGHT);
 	windows.setWindowTitle("简易图形绘制系统");

@@ -9,7 +9,7 @@ class Line:public Graph
 		//设置样式
 		void SetLineStyle();
 		//画线
-		void Draw();
+		Image* Draw();
 		void Erase();
 		void Move();
 		void Resize();

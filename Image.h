@@ -17,9 +17,13 @@ public:
 
 	void save(const std::string& savePath);
 	static void save(const std::string& savePath, Image* img);
-	Image* getimage(int x, int y, int w, int h);
+	void Getimage(int x, int y, int w, int h);
 
 	DWORD* ImageBuffer();			// 获取绘图设备的显存指针
+
+
+	
+
 
 private:
 	void SetDefault() override;						// 设置为默认状态
@@ -27,6 +31,8 @@ private:
 
 	int x;
 	int y;
+
+	
 private://使用掩码图透明贴图
 	Image* pMaskImg;
 };

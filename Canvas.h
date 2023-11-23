@@ -5,6 +5,7 @@
 #include "Ellipse.h"
 #include "Square.h"
 #include"pushButton.h"
+#include"Image.h"
 #include <vector>
 #ifndef	 _CANVAS_H_
 #define  _CANVAS_H_
@@ -34,11 +35,14 @@ public:
 	ExMessage c_msg;
 
 	std::vector<PushButton*> graph_btns;//图形按钮容器
-
+	//保存绘图信息的Image对象
+	vector<Image*> GraphList;		// 图形列表
 
 
 private:
 	vector<Graph*> graphs;//图形容器
+
+
 
 	friend class Window;
 

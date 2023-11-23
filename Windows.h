@@ -4,6 +4,7 @@
 #include<string>
 #include"pushButton.h"
 #include"Canvas.h"
+#include<math.h>
 
 
 using namespace std;

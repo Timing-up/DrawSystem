@@ -13,7 +13,7 @@ class Ellip:public Graph
 
 	
 
-		void Draw();
+		Image* Draw();
 		void showInfo();
 
 	/*bool isInside(Dot dot);

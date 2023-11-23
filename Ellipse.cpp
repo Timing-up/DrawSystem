@@ -23,12 +23,8 @@ Ellip::~Ellip()
 }
 
 
-void Ellip::Draw()
+Image* Ellip::Draw()
 {
-	//设置剪辑区域
-	HRGN ellip = CreateRectRgn(0, 0, 960, 540);
-	setcliprgn(ellip);
-
 	char s[10];
 	InputBox(s, 10, "请输入椭圆外切矩形左上角顶点横坐标", "矩形", "500", 500, 0, false);
 	UpperLeft.x = atof(s);
@@ -38,19 +34,71 @@ void Ellip::Draw()
 	LowerRight.x = atof(s);
 	InputBox(s, 10, "请输入椭圆外切矩形右下角顶点纵坐标", "矩形", "400", 500, 0, false);
 	LowerRight.y = atof(s);
+
+	//设置剪辑区域
+	HRGN ellip = CreateRectRgn(150, 0, 960, 540);
+	setcliprgn(ellip);
+
+	while (true)
+	{
+		int flag = 1;
+		while (flag)
+		{
+			clearcliprgn();
+			IMAGE img;
+			loadimage(&img, _T("D:\\test.bmp"));
+			putimage(150, 0, &img);
+			ExMessage msg;
+			peekmessage(&msg);
+			switch (msg.message)
+			{
+			case WM_KEYDOWN:
+				if (msg.vkcode == VK_RETURN) {
+					flag = 0;
+					Image* ellipseImage = new Image();
+
+					fillellipse(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+
+					Window::flushDraw();
+					ellipseImage->Getimage(150, 0, 810, 540);
+					saveimage(_T("D:\\test.bmp"), ellipseImage);
+					return ellipseImage;
+				}//多条语句，请把大括号带上！！！
+
+
+				if (GetAsyncKeyState(VK_UP)) {
+					UpperLeft.y -= 1;
+					LowerRight.y -= 1;
+				}
+				if (GetAsyncKeyState(VK_DOWN)) {
+					UpperLeft.y += 1;
+					LowerRight.y += 1;
+				}
+				if (GetAsyncKeyState(VK_LEFT)) {
+					UpperLeft.x -= 1;
+					LowerRight.x -= 1;
+				}
+				if (GetAsyncKeyState(VK_RIGHT)) {
+					UpperLeft.x += 1;
+					LowerRight.x += 1;
+				}
+			}
+
+			setfillcolor(BLUE);
+			fillellipse(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+			Window::flushDraw();
+		}
+
+
+
+
+
+
+
+		//DeleteObject(ellip);
+
 	
-	//InputBox(s, 10, "请输入线条宽度", "线条宽度", "5", 500, 0, false);
-	//line.setThickness(atof(s));
-	//line.SetLineStyle();
-
-
-
-	setfillcolor(BLUE);
-	fillellipse(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
-
-	Window::flushDraw();
-	DeleteObject(ellip);
-
+	}
 }
 
 void Ellip::showInfo()

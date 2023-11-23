@@ -60,11 +60,12 @@ void Image::save(const std::string& savePath, Image* img)
 	::saveimage(savePath.c_str(), img);
 }
 
-Image* Image::getimage(int x, int y, int w, int h)
+void Image::Getimage(int x, int y, int w, int h)
 {
-	Image* img = new Image;
-	::getimage(img, x, y, w, h);
-	return img;
+	
+	getimage(this, x, y, w, h);
+
+	
 }
 
 DWORD* Image::ImageBuffer()

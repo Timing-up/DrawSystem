@@ -78,6 +78,16 @@ Image* Line::Draw()
 				dot1.x += 1;
 				dot2.x += 1;
 				dot2.x += 1;
+			}if (GetAsyncKeyState(0x4C)) {
+				int R, G, B;
+				InputBox(s, 10, "请输入线条颜色RGB：R值(0-255)", "填充颜色", "255", 500, 0, false);
+				R = atoi(s);
+				InputBox(s, 10, "请输入线条颜色RGB：G值(0-255)", "填充颜色", "255", 500, 0, false);
+				G = atoi(s);
+				InputBox(s, 10, "请输入线条颜色RGB：B值(0-255)", "填充颜色", "255", 500, 0, false);
+				B = atoi(s);
+				setlinecolor(RGB(R, G, B));
+
 			}
 		}
 

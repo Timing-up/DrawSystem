@@ -52,8 +52,6 @@ Image* Circle::Draw()
 					flag = 0;
 					Image* circleImage = new Image();
 
-
-					setfillcolor(RED);
 					fillcircle(Center.GetX(), Center.GetY(), Radius);
 					Window::flushDraw();
 
@@ -78,12 +76,31 @@ Image* Circle::Draw()
 				if (GetAsyncKeyState(VK_RIGHT)) {
 					Center.x += 1;
 					Center.x += 1;
+				}if (GetAsyncKeyState(0x46)) {
+					int R, G, B;
+					InputBox(s, 10, "请输入填充颜色RGB：R值(0-255)", "填充颜色", "255", 500, 0, false);
+					R = atoi(s);
+					InputBox(s, 10, "请输入填充颜色RGB：G值(0-255)", "填充颜色", "255", 500, 0, false);
+					G = atoi(s);
+					InputBox(s, 10, "请输入填充颜色RGB：B值(0-255)", "填充颜色", "255", 500, 0, false);
+					B = atoi(s);
+					setfillcolor(RGB(R, G, B));
+
+				}if (GetAsyncKeyState(0x4C)) {
+					int R, G, B;
+					InputBox(s, 10, "请输入线条颜色RGB：R值(0-255)", "填充颜色", "255", 500, 0, false);
+					R = atoi(s);
+					InputBox(s, 10, "请输入线条颜色RGB：G值(0-255)", "填充颜色", "255", 500, 0, false);
+					G = atoi(s);
+					InputBox(s, 10, "请输入线条颜色RGB：B值(0-255)", "填充颜色", "255", 500, 0, false);
+					B = atoi(s);
+					setlinecolor(RGB(R, G, B));
 				}
 			}
 
 			//循环绘制
 
-			setfillcolor(RED);
+
 			fillcircle(Center.GetX(), Center.GetY(), Radius);
 			Window::flushDraw();//刷新绘图
 

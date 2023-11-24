@@ -14,11 +14,11 @@ class Window
 public:
 	Window(int w, int h, int flag = 0);
 	~Window();
-	void Run();
+
 	void setWindowTitle(const std::string& title);
 	void setWindowColor(COLORREF c);
 	void MenuWindow();
-	void CanvasWindow();
+
 
 public://static
 	static int width();

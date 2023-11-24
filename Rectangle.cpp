@@ -1,10 +1,6 @@
 #include "Rectangle.h"
 #include "Windows.h"
 
-
-
-
-
 Image* Rect::Draw()
 {
 
@@ -52,7 +48,7 @@ Image* Rect::Draw()
 				flag = 0;
 				Image *rectImage = new Image();
 				
-				rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+				fillrectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
 				Window::flushDraw();
 
 				rectImage->Getimage(150, 0, 810, 540);
@@ -76,8 +72,27 @@ Image* Rect::Draw()
 			if (GetAsyncKeyState(VK_RIGHT)) {
 				UpperLeft.x += 1;
 				LowerRight.x += 1;
+			}if (GetAsyncKeyState(0x46)) {
+				int R, G, B;
+				InputBox(s, 10, "请输入填充颜色RGB：R值(0-255)", "填充颜色", "255", 500, 0, false);
+				R = atoi(s);
+				InputBox(s, 10, "请输入填充颜色RGB：G值(0-255)", "填充颜色", "255", 500, 0, false);
+				G = atoi(s);
+				InputBox(s, 10, "请输入填充颜色RGB：B值(0-255)", "填充颜色", "255", 500, 0, false);
+				B = atoi(s);
+				setfillcolor(RGB(R, G, B));
+			
+			}if (GetAsyncKeyState(0x4C)) {
+				int R, G, B;
+				InputBox(s, 10, "请输入线条颜色RGB：R值(0-255)", "填充颜色", "255", 500, 0, false);
+				R = atoi(s);
+				InputBox(s, 10, "请输入线条颜色RGB：G值(0-255)", "填充颜色", "255", 500, 0, false);
+				G = atoi(s);
+				InputBox(s, 10, "请输入线条颜色RGB：B值(0-255)", "填充颜色", "255", 500, 0, false);
+				B = atoi(s);
+				setlinecolor(RGB(R, G, B));
 			}
-			//如果按r，旋转90度
+			//如果按r，旋转90度--bug--待实现
 			if (GetAsyncKeyState(0x52)) {
 
 				UpperLeft.x = 850- UpperLeft.y;
@@ -121,7 +136,7 @@ Image* Rect::Draw()
 		}
 		
 		//循环绘制
-	rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
+	fillrectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
 	Window::flushDraw();
 	}
 	/*rectangle(UpperLeft.x, UpperLeft.y, LowerRight.x, LowerRight.y);
@@ -129,6 +144,7 @@ Image* Rect::Draw()
 	/*DeleteObject(rect);*/
 	
 }
+
 
 
 
